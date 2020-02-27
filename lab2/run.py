@@ -6,11 +6,87 @@ from sklearn.decomposition import PCA
 
 def run():
 
-    bot()
+    bot2()
 
     # q1()
 
     # q2()
+
+
+def bot2():
+    data0 = pd.read_json('./specs/spells.json')
+    spell = []
+    # print(data['spells'])
+    for s in data0['spells']:
+        text = 'used a spell called ' + s['incantation'] + ', it is a ' + s['type'] + ' spell which can ' + s['effect']
+        spell.append(text)
+
+    data1 = pd.read_json('./specs/firstNames.json')
+    data2 = pd.read_json('./specs/lastNames.json')
+
+    fn = []
+    ln = []
+
+    modify(spell)
+
+    for n in data1['firstNames']:
+        fn.append(n)
+
+    for n in data2['lastNames']:
+        ln.append(n)
+
+    # modify(fn)
+    # modify(ln)
+
+    lw = []
+    data3 = pd.read_json('./specs/lovecraft_words.json')
+    for w in data3['words']:
+        lw.append(w)
+
+    # modify(lw)
+
+    o = []
+    data3 = pd.read_json('./specs/objects.json')
+    for w in data3['objects']:
+        o.append(w)
+
+    # modify(o)
+
+    bp = []
+    data4 = pd.read_json('./specs/bodyParts.json')
+    for w in data4['bodyParts']:
+        bp.append(w)
+
+    # modify(bp)
+
+    fs = []
+    lv = []
+    data5 = pd.read_json('./specs/proverbs.json')
+    for f in data5['proverbs'][0]['Friendship']:
+        fs.append(f)
+    for l in data5['proverbs'][1]['Love']:
+        lv.append(l)
+
+    modify(fs)
+    modify(lv)
+
+    d = []
+    sc = []
+    data6 = pd.read_json('./specs/lovecraft.json')
+    print(data6)
+    for f in data6['deities']:
+        d.append(f)
+    for l in data6['supernatural_creatures']:
+        sc.append(l)
+
+    modify(d)
+    modify(sc)
+
+
+def modify(o):
+    o = str(o).replace("',", '",')
+    o = str(o).replace(" '", ' "')
+    print(o)
 
 
 def bot():
